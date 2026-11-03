@@ -256,7 +256,7 @@ for(let i=0;i<22;i++){const s=document.createElement('span');s.className='p';s.s
 $$('#sw b').forEach((b,i)=>b.onclick=()=>{$$('#sw b').forEach(k=>k.classList.remove('a'));b.classList.add('a');dev.style.opacity=0;setTimeout(()=>{dev.src=th[i].src;dev.style.opacity=1},150)});
 mode();
 /* form */
-const ENDPOINT='http://localhost:3000/api/preorders';
+const ENDPOINT='/api/preorders';
 $('#f').onsubmit=async e=>{e.preventDefault();
 const n=$('#n').value.trim(),cc=$('#cc').value;let d=$('#p').value.replace(/\D/g,'').replace(/^0+/,'');if(cc==='+20'&&d.startsWith('20')&&d.length===12)d=d.slice(2);const ok=cc==='+20'?/^1[0125]\d{8}$/.test(d):(d.length>=6&&d.length<=12),p=cc+d;
 if(n.length<2||!ok){$('#err').textContent=ar?'اكتب اسمك ورقم موبايل صح من فضلك.':'Please enter your name and a valid mobile number.';return}
