@@ -1,11 +1,10 @@
 const express = require('express');
+const path = require('node:path');
 const { google } = require('googleapis');
 
 const sheetId = process.env.GOOGLE_SHEET_ID || "1fIKI64zP99ZN4IOhlAogu2Qv2Hx-meAgITaOeLNH0GU";
 const app = express();
 
-// الـ credentials بتيجي من Environment Variable على Vercel،
-// ومن ملف credentials.json لو بتجرب على جهازك
 let credentials;
 if (process.env.GOOGLE_CREDENTIALS) {
 	credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
@@ -28,6 +27,12 @@ app.use((req, res, next) => {
 	next();
 });
 app.use(express.json({ limit: '10kb' }));
+
+// الصفحة الرئيسية
+app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', (req, res) => {
+	res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 app.post('/api/preorders', async (req, res) => {
 	const order = req.body;
@@ -53,10 +58,8 @@ app.post('/api/preorders', async (req, res) => {
 	}
 });
 
-// للتجربة على جهازك: node server.js  ثم افتح http://localhost:3000
+// للتجربة على جهازك: node server.js
 if (require.main === module) {
-	const path = require('node:path');
-	app.use(express.static(path.join(__dirname, 'public')));
 	const port = Number(process.env.PORT || 3000);
 	app.listen(port, () => console.log(`Listening on port ${port}`));
 }
