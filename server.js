@@ -5,7 +5,7 @@ const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
 
 const sheetId = process.env.GOOGLE_SHEET_ID || "1qOr49Sq_MMh0DwJ8gwQX5fJeA7pOpITyt4jTuV1LZS4";
-const scriptUrl = process.env.GOOGLE_SCRIPT_URL || "https://script.google.com/macros/s/AKfycbznAUA9WLXlf0b4kT5rhjkaFlD1ETshOvs6_q0jFtbjSX7kxw4v9jGaIGj4oaLbcB_r5Q/exec";
+const scriptUrl = process.env.GOOGLE_SCRIPT_URL || "https://script.google.com/macros/s/AKfycbwpE-ocH3pSgD27va7p2S2jZoSWMbnlEZ2x8-JW1DBK0WSyy4FrnbpTIbqCAlH9P6wu0w/exec";
 const app = express();
 
 const transporter = nodemailer.createTransport({
